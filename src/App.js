@@ -3,7 +3,7 @@ import './App.css';
 import NavBar from "./components/NavBar.js"
 import Banner from "./components/Banner.js"
 import Movies from "./components/Movies.js"
-import Footer  from "./components/Footer.js";
+//  import Footer  from "./components/Footer.js"
 import {BrowserRouter,Routes, Route} from "react-router-dom";
 import Favourites from './components/Favourites';
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <Route path="/" element={<>
         <Banner/>
         <Movies/>
-        <Footer/>
+       {/* <Footer/>  */}
       </>}/>
       <Route path="/favourites" element={<Favourites />}/>
     </Routes>

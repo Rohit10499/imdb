@@ -1,15 +1,8 @@
 import React,{useState} from 'react';
 
-function Footer() {
-   let [pageNumber, setPage] = useState(1);
 
-   function goAhead(){
-     setPage(pageNumber + 1);
-   }
-   function goBehind(){
-     if(pageNumber>1)
-        setPage(pageNumber - 1);
-  }
+function Footer({pageProp,goBack ,goAhead}) {
+  
   return (
     <>
         <div className="w-full flex justify-center mb-8">
@@ -20,20 +13,22 @@ function Footer() {
            border-r-0
            rounded-l-xl
            "
-           onClick={goBehind}
+           onClick={goBack}
            >Previous</button>
         <button  className="p-2
          border-2
           border-indigo-500
            text-indigo-500 
-           bg-gray-300">{pageNumber}</button>
+           bg-gray-300">
+            {pageProp} 
+           </button>
         <button  className="p-2
          border-2
           border-indigo-500
            text-indigo-500
            border-l-0
            rounded-r-xl "
-           onClick={goAhead} 
+            onClick={goAhead} 
            >Next</button>
         
         

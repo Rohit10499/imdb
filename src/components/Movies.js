@@ -1,29 +1,39 @@
 import React,{useState,useEffect} from 'react'
-import Image from "../spi1.jpg"
+// import Image from "../spi1.jpg"
 import axios from 'axios'
 import { Oval } from 'react-loader-spinner'
+import Footer from './Footer'
 
 function Movies() {
 
   const [movies,setMovies]=useState([])
-  useEffect(function(){axios.get("https://api.themoviedb.org/3/trending/movie/week?api_key=2850355e22b7c7f4404096d92b42f4cd").then((res)=>
+  let [page, setPage] = useState(1)
+
+  function goAhead(){
+    setPage(page + 1)
+  }
+  function goBack(){
+    if(page>1)
+       setPage(page- 1)
+ }
+  useEffect(function () {axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=2850355e22b7c7f4404096d92b42f4cd&page=${page}`).then((res)=>
   
   {console.table(res.data.results)
     setMovies(res.data.results);
   }
   )
 
-  },[])
+  },[page])
 
 
 
 
  return (
     <>
-    <div className="mb-8">
+    <div className="mb-8 text-center">
       <div className="mt-8  mb-8 font-bold text-2xl text-center" >Trending Movies</div>
       {
-        movies.length == 0 ?
+        movies.length === 0 ?
         <div className='flex justify-center'>
         <Oval
           height="100"
@@ -66,9 +76,10 @@ function Movies() {
         </div>
       }
   </div>
+  <Footer pageProp={page}  goBack={goBack}  goAhead={goAhead}/>
 
     </>
   )
 }
 
-export default Movies
+export default Movies;
